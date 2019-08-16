@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <script src="js/jquery/1.9.0/jquery.js"></script>
+    <script src="js/jsencrypt/2.3.1/jsencrypt.js"></script>
+</head>
+<body>
+<from action="/login" id="loginFrom" >
+    <p><span>用户名：</span><input id="usr" name="username" /></p>
+    <p><span>密码：</span><input id="pwd" name="password" /></p>
+    <p><button id="submit">登陆</button></p>
+</from>
+
+<script>
+    // 获取公钥
+    $.ajax({
+        url:"/getBase64PublicKey",
+        type: 'post',
+        success: function(result){
+            window.publickey = result;
+        }
+    })
+
+    $("#submit").click(function () {
+        var data = {};
+        var password = $("#pwd").val();
+        var encrypt = new JSEncrypt();
+        encrypt.setPublicKey( window.publickey );
+        password = encrypt.encrypt( password );
+        console.log( password );
+        data.password = password;
+        data.useranme = $("#usr").val();
+
+        $.ajax({
+            url: "/login",
+            type: 'post',
+            data: data,
+            success: function (res) {
+                alert( res );
+            }
+        })
+
+    })
+
+
+</script>
+
+</body>
+</html>
