@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzq.mapper.EntryMapper">
+    <insert id="insert" parameterType="com.zzq.entity.Entry">
+        REPLACE into entry(serial_info, quote_type, serial_no, total_amount, sale_rate, buy_rate, cd_bank_type,tx_bank_type,deal_date,expire,rebuy_branch_name,rebuy_branch_code,rebuy_prod_name,rebuy_prod_code,rebuy_trader_name,rebuy_trader_id,sale_branch_name,sale_branch_code,sale_prod_name,sale_prod_code,sale_trader_name,sale_trader_id,contact_name,contact_number,item_list)
+        values(#{entry.serial_info}, #{entry.quote_type}, #{entry.serial_no}, #{entry.total_amount}, #{entry.sale_rate}, #{entry.buy_rate}, #{entry.cd_bank_type}, #{entry.tx_bank_type}, #{entry.deal_date}, #{entry.expire}, #{entry.rebuy_branch_name}, #{entry.rebuy_branch_code}, #{entry.rebuy_prod_name}, #{entry.rebuy_prod_code}, #{entry.rebuy_trader_name}, #{entry.rebuy_trader_id}, #{entry.sale_branch_name}, #{entry.sale_branch_code}, #{entry.sale_prod_name}, #{entry.sale_prod_code}, #{entry.sale_trader_name}, #{entry.sale_trader_id}, #{entry.contact_name}, #{entry.contact_number},#{entry.item_list,typeHandler=com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler})
+    </insert>
+</mapper>

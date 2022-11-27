@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzq.mapper.NoticeMapper">
+
+    <select id="selectNoticeId" resultType="com.zzq.entity.Notice">
+        select id from notice
+    </select>
+
+    <select id="selectNoticeById" resultType="com.zzq.entity.Notice">
+        SELECT *
+        FROM notice c
+        WHERE c.id=#{id}
+    </select>
+
+
+
+</mapper>
+

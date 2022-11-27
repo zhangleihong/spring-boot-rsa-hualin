@@ -8,9 +8,11 @@
 </head>
 <body>
 <from action="/login" id="loginFrom" >
-    <p><span>用户名：</span><input id="usr" name="username" /></p>
-    <p><span>密码：</span><input id="pwd" name="password" /></p>
-    <p><button id="submit">登陆</button></p>
+    <p><span>渠道编号：</span><input id="partnerCode" name="partnerCode" /></p>
+    <p><span>32位请求流水号：</span><input id="requestNo" name="requestNo" /></p>
+    <p><span>合作方请求时间：</span><input id="requestTime" name="requestTime" /></p>
+    <p><span>数据：</span><input id="data1" name="data1" /></p>
+    <p><button id="submit">提交</button></p>
 </from>
 
 <script>
@@ -25,20 +27,28 @@
 
     $("#submit").click(function () {
         var data = {};
-        var password = $("#pwd").val();
+        var data1 = $("#data1").val();
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey( window.publickey );
-        password = encrypt.encrypt( password );
-        console.log( password );
-        data.password = password;
-        data.useranme = $("#usr").val();
+        data1 = encrypt.encrypt( data1 );
+        //console.log( password );
+        data["partnerCode"] = $("#partnerCode").val();
+        data["requestNo"] = $("#requestNo").val();
+        data["requestTime"] = $("#requestTime").val();
+        data["data1"] = data1;
+
+
+        data = JSON.stringify(data);
+
+        console.log(data);
 
         $.ajax({
             url: "/login",
             type: 'post',
             data: data,
+            contentType: 'application/json;charset=utf-8',
             success: function (res) {
-                alert( res );
+                alert(res);
             }
         })
 
